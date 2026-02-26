@@ -6,7 +6,7 @@ actor APIClient {
     #if DEBUG
     private let baseURL = "http://localhost:3000/api"
     #else
-    private let baseURL = "https://neroli-api.vercel.app/api"
+    private let baseURL = "https://neroli-api-six.vercel.app/api"
     #endif
 
     private var accessToken: String?
