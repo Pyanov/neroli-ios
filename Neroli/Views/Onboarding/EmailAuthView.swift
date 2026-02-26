@@ -41,7 +41,7 @@ struct EmailAuthView: View {
                         .fontWeight(.semibold)
                         .frame(maxWidth: .infinity)
                         .frame(height: 48)
-                        .background(.accent)
+                        .background(Color.accentColor)
                         .foregroundStyle(.white)
                         .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
                 }

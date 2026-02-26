@@ -10,13 +10,13 @@ struct ProfileView: View {
                 Section {
                     HStack(spacing: 14) {
                         Circle()
-                            .fill(.accent.opacity(0.2))
+                            .fill(Color.accentColor.opacity(0.2))
                             .frame(width: 56, height: 56)
                             .overlay {
                                 Text(initials)
                                     .font(.title2)
                                     .fontWeight(.semibold)
-                                    .foregroundStyle(.accent)
+                                    .foregroundStyle(Color.accentColor)
                             }
 
                         VStack(alignment: .leading, spacing: 2) {

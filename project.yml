@@ -19,9 +19,6 @@ packages:
   Lottie:
     url: https://github.com/airbnb/lottie-ios.git
     from: "4.4.0"
-  ExyteChat:
-    url: https://github.com/exyte/Chat.git
-    from: "2.0.0"
   MarkdownUI:
     url: https://github.com/gonzalezreal/swift-markdown-ui.git
     from: "2.3.0"
@@ -66,8 +63,6 @@ targets:
       - package: Vortex
       - package: Lottie
         product: Lottie
-      - package: ExyteChat
-        product: ExyteChat
       - package: MarkdownUI
         product: MarkdownUI
       - package: PopupView
