@@ -114,6 +114,35 @@ actor APIClient {
         }
     }
 
+    // MARK: - Onboarding
+
+    func saveOnboarding(data: OnboardingData) async throws {
+        struct OnboardingBody: Encodable {
+            let name: String
+            let lifeChapter: String?
+            let socialConfidence: String?
+            let saturdayNight: [String]
+            let coachingStyle: String?
+            let personalityDigest: String?
+        }
+
+        let body = OnboardingBody(
+            name: data.name,
+            lifeChapter: data.lifeChapter?.rawValue,
+            socialConfidence: data.socialConfidence?.rawValue,
+            saturdayNight: data.saturdayNight.map { $0.rawValue },
+            coachingStyle: data.coachingStyle?.rawValue,
+            personalityDigest: OnboardingInsight.generateDigest(for: data)
+        )
+
+        struct EmptyResponse: Decodable {}
+        let _: EmptyResponse = try await request(
+            path: "/user/onboarding",
+            method: "POST",
+            body: body
+        )
+    }
+
     // MARK: - Token Refresh
 
     private func attemptTokenRefresh() async throws -> Bool {
