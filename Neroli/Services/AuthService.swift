@@ -9,11 +9,21 @@ class AuthService: ObservableObject {
     @Published var error: String?
 
     init() {
-        // Check for stored refresh token on launch
+        #if DEBUG
+        // Dev bypass — auto-login with test account
+        Task { await devBypass() }
+        #else
         if KeychainHelper.load(key: "refreshToken") != nil {
             Task { await restoreSession() }
         }
+        #endif
     }
+
+    #if DEBUG
+    func devBypass() async {
+        await login(email: "test@neroli.app", password: "testpassword123")
+    }
+    #endif
 
     // MARK: - Email Auth
 

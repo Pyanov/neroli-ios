@@ -3,11 +3,7 @@ import Foundation
 actor APIClient {
     static let shared = APIClient()
 
-    #if DEBUG
-    private let baseURL = "http://localhost:3000/api"
-    #else
     private let baseURL = "https://neroli-api-six.vercel.app/api"
-    #endif
 
     private var accessToken: String?
     private var refreshToken: String?
@@ -113,13 +109,8 @@ actor APIClient {
         }
 
         for try await line in bytes.lines {
-            // Vercel AI SDK data stream format: "0:text"
-            if line.hasPrefix("0:") {
-                let text = String(line.dropFirst(2))
-                // Remove surrounding quotes if present
-                let cleaned = text.trimmingCharacters(in: CharacterSet(charactersIn: "\""))
-                onText(cleaned)
-            }
+            guard !line.isEmpty else { continue }
+            onText(line + "\n")
         }
     }
 
